@@ -1,0 +1,94 @@
+id,name,athletes
+USA,United States,242
+CAN,Canada,225
+SUI,Switzerland,169
+OAR,Olympic Athletes from Russia,168
+GER,Germany,156
+JPN,Japan,124
+ITA,Italy,122
+KOR,South Korea,122
+SWE,Sweden,116
+NOR,Norway,109
+FRA,France,107
+FIN,Finland,106
+AUT,Austria,105
+CZE,Czech Republic,95
+CHN,China,81
+SLO,Slovenia,71
+POL,Poland,62
+GBR,Great Britain,58
+SVK,Slovakia,56
+AUS,Australia,51
+KAZ,Kazakhstan,46
+COR,Korea,35
+LAT,Latvia,34
+NED,Netherlands,33
+BLR,Belarus,33
+UKR,Ukraine,33
+ROU,Romania,27
+EST,Estonia,22
+BEL,Belgium,22
+BUL,Bulgaria,21
+NZL,New Zealand,21
+CRO,Croatia,19
+HUN,Hungary,19
+DEN,Denmark,17
+ESP,Spain,13
+ISR,Israel,10
+PRK,North Korea,10
+BRA,Brazil,9
+LTU,Lithuania,9
+TUR,Turkey,8
+CHI,Chile,7
+ARG,Argentina,7
+AND,Andorra,5
+ISL,Iceland,5
+IRL,Ireland,5
+BIH,Bosnia and Herzegovina,4
+COL,Colombia,4
+GEO,Georgia,4
+GRE,Greece,4
+IRI,Iran,4
+MEX,Mexico,4
+MON,Monaco,4
+SRB,Serbia,4
+TPE,Chinese Taipei,4
+THA,Thailand,4
+ARM,Armenia,3
+JAM,Jamaica,3
+LBN,Lebanon,3
+LIE,Liechtenstein,3
+MKD,Macedonia,3
+MNE,Montenegro,3
+NGR,Nigeria,3
+ALB,Albania,2
+BOL,Bolivia,2
+IND,India,2
+KGZ,Kyrgyzstan,2
+MAS,Malaysia,2
+MDA,Moldova,2
+MGL,Mongolia,2
+MAR,Morocco,2
+PAK,Pakistan,2
+PHI,Philippines,2
+POR,Portugal,2
+UZB,Uzbekistan,2
+AZE,Azerbaijan,1
+BER,Bermuda,1
+CYP,Cyprus,1
+ECU,Ecuador,1
+ERI,Eritrea,1
+GHA,Ghana,1
+HKG,Hong Kong,1
+KEN,Kenya,1
+KOS,Kosovo,1
+LUX,Luxembourg,1
+MAD,Madagascar,1
+MLT,Malta,1
+PUR,Puerto Rico,1
+SMR,San Marino,1
+SGP,Singapore,1
+RSA,South Africa,1
+TLS,East Timor,1
+TGA,Tonga,1
+TOG,Togo,1
