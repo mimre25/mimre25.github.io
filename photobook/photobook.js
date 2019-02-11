@@ -1,13 +1,21 @@
 var currentImg = 0;
 
-
+var images = [];
+function preload() {
+    for (var i = 0; i < 26; i++) {
+        images[i] = new Image();
+        images[i].id = "photo";
+        images[i].src = "img/" + i + ".jpg";
+    }
+}
 
 function change(newImg)
 {
     $("#photo").fadeOut(function () {
-        $(this).attr('src', "img/" + newImg + '.jpg');
+        // $(this).attr('src', "img/" + newImg + '.jpg');
+        $(this).replaceWith(images[currentImg]);
         $(this).fadeIn();
-        
+
         if(newImg === 0)
         {
             $("#text").show();
@@ -39,7 +47,9 @@ function decr()
 
 function main()
 {
-    $("#photo").attr('src', "img/" + currentImg + '.jpg').hide().fadeIn();
+
+    preload();
+    $("#photo").attr('src', images[0].src).hide().fadeIn();
     $(document).keydown(function (event) {
         if (event.which === 37) //left
         {
