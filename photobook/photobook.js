@@ -7,16 +7,17 @@ function change(newImg)
     $("#photo").fadeOut(function () {
         $(this).attr('src', "img/" + newImg + '.jpg');
         $(this).fadeIn();
+        
+        if(newImg === 0)
+        {
+            $("#text").show();
+        } else
+        {
+            $("#text").hide();
+        }
 
     });
 
-    if(newImg === 0)
-    {
-        $("#text").show()
-    } else
-    {
-        $("#text").hide();
-    }
 
 }
 
