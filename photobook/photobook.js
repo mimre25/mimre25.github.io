@@ -3,7 +3,7 @@ var screenWidth = -1;
 
 var images = [];
 function preload() {
-    let width = screenWidth * 0.5;
+    let width = screenWidth;
     for (var i = 0; i < 26; i++) {
         images[i] = new Image(width, width/1.2);
         images[i].id = "photo";
