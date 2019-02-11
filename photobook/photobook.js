@@ -57,7 +57,7 @@ function main()
         let end = event.swipestop.coords;
 
         let dis = end[0] - start[0];
-        if (dis < 0)
+        if (dis > 0)
         {
             decr();
         } else
