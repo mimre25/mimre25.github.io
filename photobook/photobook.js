@@ -1,9 +1,11 @@
 var currentImg = 0;
+var screenWidth = -1;
 
 var images = [];
 function preload() {
+    let width = screenWidth * 0.5;
     for (var i = 0; i < 26; i++) {
-        images[i] = new Image();
+        images[i] = new Image(width, width/1.2);
         images[i].id = "photo";
         images[i].src = "img/" + i + ".jpg";
     }
@@ -47,7 +49,7 @@ function decr()
 
 function main()
 {
-
+    screenWidth = (window.innerWidth > 0) ? window.innerWidth : screen.width;
     preload();
     $("#photo").attr('src', images[0].src).hide().fadeIn();
     $(document).keydown(function (event) {
