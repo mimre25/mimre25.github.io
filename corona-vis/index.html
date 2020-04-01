@@ -1,0 +1,201 @@
+<head>
+    <meta charset="utf-8"/>
+</head>
+<body>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.3/d3.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/topojson/1.6.9/topojson.min.js"></script>
+<script src="lib/datamaps/datamaps.world.min.js"></script>
+<div id="container" style="position: relative; width: 1000px; height: 500px;"></div>
+<script>
+
+    function numberWithCommas(x) {
+        return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+    }
+
+    var perCapita = true;
+    var absolute = false;
+    var rows;
+    var map;
+    var currentField;
+    var populations = [];
+    var idMap = [];
+    const today = new Date();
+    const yesterday = new Date();
+    yesterday.setDate(yesterday.getDate() - 1);
+    const isToday = (someDate) => {
+        // console.log(today, someDate);
+        return someDate.getDate() == today.getDate() &&
+            someDate.getMonth() == today.getMonth() &&
+            someDate.getFullYear() == today.getFullYear()
+    };
+    const isYesterday = (someDate) => {
+        // console.log(today, someDate);
+        return someDate.getDate() == yesterday.getDate() &&
+            someDate.getMonth() == yesterday.getMonth() &&
+            someDate.getFullYear() == yesterday.getFullYear()
+    };
+
+    d3.csv("data/population.csv", function(data)
+        {
+            data.map(function (row) {
+                populations[row.country] = row.population;
+            });
+            d3.csv("data/id_names.csv", function(data)
+                {
+                    data.map(function (row) {
+                        idMap[row.name] = row.id;
+                    });
+                    d3.csv("data/full_data.csv", function(data) {
+                        rows = data.filter(x => isYesterday(new Date(x.date))).map(function(row)
+                        {
+                            return {
+                                date: row.date,
+                                country: row.location,
+                                population: populations[row.location],
+                                newCases: parseInt(row.new_cases),
+                                newDeaths: parseInt(row.new_deaths),
+                                totalCases: parseInt(row.total_cases),
+                                totalDeaths: parseInt(row.total_deaths),
+                                map_id: idMap[row.location],
+
+                            };
+                        });
+                        console.log(rows);
+                        // window.rows = rows;
+                        doSomethingWithRows();
+                    });
+                }
+            );
+        }
+    );
+
+
+
+
+
+
+    function getFieldName(fieldName)
+    {
+        if (absolute)
+        {
+            fieldName = "total cases";
+        }
+        if (perCapita)
+        {
+            fieldName = "cases per capita";
+        }
+        return fieldName
+    }
+
+    function updateColor(fieldName)
+    {
+        currentField = fieldName;
+        var dataset = {};
+
+        var onlyValues = rows.map(function(obj){
+            var value = obj.totalCases;
+            if (absolute)
+            {
+                value = obj.totalCases;
+            }
+            if (perCapita)
+            {
+                value /= obj.population;
+                //todo fix liechtenstein fucks up total score
+            }
+            return value;
+
+        });
+
+        var minValue = Math.min.apply(null, onlyValues),
+            maxValue = Math.max.apply(null, onlyValues);
+
+        console.log(minValue);
+        console.log(maxValue);
+
+        // create color palette function
+        // color can be whatever you wish
+        var paletteScale = d3.scale.linear()
+            .domain([minValue,maxValue*0.25])
+            .range(["#e0f3db","#f30d11"]);
+
+
+        rows.forEach(function(item){
+            var iso = item.map_id,
+                value = item.totalCases,
+                name = fieldName;
+            let val_ = '';
+            if (absolute)
+            {
+                val_ = numberWithCommas(value);
+            }
+            if (perCapita)
+            {
+                value /= item.population;
+                val_ = (100*value).toFixed(2) + "%";
+            }
+            dataset[iso] = {
+                val: val_,
+                fillColor: paletteScale(value),
+                name: getFieldName(fieldName) };
+        });
+        return dataset;
+    }
+
+    function doSomethingWithRows() {
+        // do something with rows
+
+
+        updateMap("population")
+
+        addEventHandler();
+    }
+
+    function updateMap(fieldName)
+    {
+        document.getElementById('currentShow').innerText = getFieldName(fieldName);
+        var dataset = updateColor(fieldName);
+        console.log(dataset);
+        document.getElementById('container').innerHTML="";
+        map = new Datamap({
+            element: document.getElementById('container'),
+            fills: {
+                UNKNOWN: '#EDEDED',
+                defaultFill: '#EDEDED'
+            },
+            data: dataset,
+            geographyConfig: {
+                popupTemplate: function(geo, data) {
+                    return ['<div class="hoverinfo"><strong>',
+                        'Number of ' + data.name + ' in ' + geo.properties.name,
+                        ': ' + data.val,
+                        '</strong></div>'].join('');
+                }
+            }
+        });
+
+    }
+
+    function addEventHandler()
+    {
+        document.getElementById("pop").onclick = function()
+        {
+            perCapita = true;
+            absolute = false;
+            updateMap("population");
+        };
+        document.getElementById("abs").onclick = function()
+        {
+            perCapita = false;
+            absolute = true;
+            updateMap("absolute");
+        };
+
+    }
+</script>
+<p>Currently showing: <b id="currentShow"></b></p>
+
+<p>Common stats</p>
+<input type="button" value="population" id="pop" />
+<input type="button" value="absolut" id="abs" />
+</body>
