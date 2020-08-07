@@ -58,7 +58,7 @@ function drawTextBG(ctx, txt, font, x, y, color) {
     var width = ctx.measureText(txt).width;
 
     /// draw background rect assuming height of font
-    ctx.fillRect(x, y-5, width, parseInt(font, 10));
+    ctx.fillRect(x, y-5, width, parseInt(font, 10)+5);
     
     /// text color
     ctx.fillStyle = '#000';
