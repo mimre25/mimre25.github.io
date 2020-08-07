@@ -42,7 +42,9 @@ function nextReset(date) {
 
 function drawTextBG(ctx, txt, font, x, y, color) {
 
-    /// lets save current state as we make a lot of changes        
+    /// lets save current state as we make a lot of changes      
+    y-= 50;
+      
     ctx.save();
 
     /// set font
