@@ -3,46 +3,31 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
-    <loc>http://example.org/experiences/</loc>
+    <loc>https://mimre.info/experience/</loc>
     <lastmod>2021-01-30T21:19:39+01:00</lastmod>
   </url>
   
   <url>
-    <loc>http://example.org/</loc>
+    <loc>https://mimre.info/</loc>
     <lastmod>2021-01-30T21:19:39+01:00</lastmod>
   </url>
   
   <url>
-    <loc>http://example.org/overview/</loc>
+    <loc>https://mimre.info/publications/</loc>
     <lastmod>2021-01-30T21:19:39+01:00</lastmod>
   </url>
   
   <url>
-    <loc>http://example.org/publications/</loc>
-    <lastmod>2021-01-30T21:19:39+01:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>http://example.org/short-bio/</loc>
-    <lastmod>2021-01-30T21:19:39+01:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>http://example.org/bio/</loc>
+    <loc>https://mimre.info/bio/</loc>
     <lastmod>2021-01-30T21:19:38+01:00</lastmod>
   </url>
   
   <url>
-    <loc>http://example.org/concept/</loc>
-    <lastmod>2021-01-30T21:19:38+01:00</lastmod>
+    <loc>https://mimre.info/categories/</loc>
   </url>
   
   <url>
-    <loc>http://example.org/categories/</loc>
-  </url>
-  
-  <url>
-    <loc>http://example.org/tags/</loc>
+    <loc>https://mimre.info/tags/</loc>
   </url>
   
 </urlset>
